@@ -3,6 +3,22 @@
     <input v-model="input" type="text">
     <button @click="subscribeUser">Подписаться</button>
     <div class="message">{{message}}</div>
+
+    <hr>
+    <b-row>
+      <b-col>
+        <b-input type="text" v-model="textMessage"/>
+      </b-col>
+      <b-col>
+        <b-button @click="sendTextMessage">send</b-button>
+      </b-col>
+    </b-row>
+    <div>
+      <pre>
+      {{messages}}
+
+      </pre>
+    </div>
   </div>
 </template>
 
@@ -11,15 +27,31 @@ export default {
   name: 'index',
   data(){
     return {
+      subscriptionId: null,
+      textMessage: '',
+      messages: [],
       subscribers: {
       },
       message: '',
       input: ''
     } 
   },
-  mounted(){},
+  mounted(){
+    this.subscriptionId = this.$bus.subscribe('/chanel1', (m) => {
+      this.messages.push(m)
+    })
+  },
+
+  destroyed() {
+    this.$bus.unsubscribe(this.subscriptionId)
+  },
 
   methods: {
+    sendTextMessage() {
+      this.$bus.send('/chanel1', {type: 'text', body: {text: this.textMessage}})
+      this.textMessage = ''
+    },
+
     subscribe(chanel,callback){
       console.log("1")
       if(chanel in this.subscribers){
