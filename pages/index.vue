@@ -1,100 +1,25 @@
 <template>
-  <div class="index">
-    <input v-model="input" type="text">
-    <button @click="subscribeUser">Подписаться</button>
-    <div class="message">{{message}}</div>
-
-    <hr>
-    <b-row>
-      <b-col>
-        <b-input type="text" v-model="textMessage"/>
-      </b-col>
-      <b-col>
-        <b-button @click="sendTextMessage">send</b-button>
-      </b-col>
-    </b-row>
-    <div>
-      <pre>
-      {{messages}}
-
-      </pre>
-    </div>
+  <div class="index">  
+    <button @click="subscribe">{{(subscribeChanel)?'Отписаться':'Подписаться'}}</button>
+    <chatPanel v-if="subscribeChanel"/>
   </div>
 </template>
 
 <script>
+import chatPanel from '~/components/chatPanel.vue'
 export default {
   name: 'index',
   data(){
     return {
-      subscriptionId: null,
-      textMessage: '',
-      messages: [],
-      subscribers: {
-      },
-      message: '',
-      input: ''
+      subscribeChanel: false
     } 
   },
-  mounted(){
-    this.subscriptionId = this.$bus.subscribe('/chanel1', (m) => {
-      this.messages.push(m)
-    })
+  components: {
+    chatPanel,
   },
-
-  destroyed() {
-    this.$bus.unsubscribe(this.subscriptionId)
-  },
-
   methods: {
-    sendTextMessage() {
-      this.$bus.send('/chanel1', {type: 'text', body: {text: this.textMessage}})
-      this.textMessage = ''
-    },
-
-    subscribe(chanel,callback){
-      console.log("1")
-      if(chanel in this.subscribers){
-        console.log("2")
-      }
-      else{
-        console.log("3")
-        this.subscribers[chanel]=[]
-        this.subscribers[chanel].push(callback)
-      }
-    },
-    send(chanel, message){
-      console.log("4")
-      if(chanel in this.subscribers){
-        console.log("5")
-        for(const callback of this.subscribers[chanel]) {
-          console.log("6")
-          callback(message)
-        }
-      }
-    },
-    subscribeUser(){
-      const message = {
-        type: 'text',
-        text: ''
-      }
-      message.text=this.input
-      this.subscribe('chanel_1', (message) => {
-        switch(message.type) {
-          case 'text':
-            this.message=message.text
-            // DISPLAY MESSAGE 
-            // PARSE MESSAGE TEXT
-              break
-          case 'USER_JOIN':
-            // DISPLAY MESSAGE "USER JOIN CHANEL1"
-              break;
-          case 'USER_LEAVE':
-            // DISPLAY MESSAGE "USER LEAVE CHANEL1"
-              break;
-        }
-      })
-      this.send('chanel_1', message)
+    subscribe(){
+      this.subscribeChanel = !this.subscribeChanel
     }
   }
 }
