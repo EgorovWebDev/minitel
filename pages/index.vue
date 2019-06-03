@@ -1,14 +1,15 @@
 <template>
-  <div class="index">  
-    <button @click="subscribe">{{(subscribeChanel)?'Отписаться':'Подписаться'}}</button>
-    <chatPanel v-if="subscribeChanel"/>
+  <div class="index">
+    <chat></chat>
   </div>
 </template>
 
 <script>
+
+import chat from '~/components/chat.vue'
 import chatPanel from '~/components/chatPanel.vue'
 export default {
-  name: 'index',
+
   data(){
     return {
       subscribeChanel: false
@@ -16,6 +17,7 @@ export default {
   },
   components: {
     chatPanel,
+    chat,
   },
   methods: {
     subscribe(){
