@@ -1,0 +1,22 @@
+.chat {
+
+}
+.chat__messages {
+  position: fixed;
+  width: 100%;
+  background: #ffdfd3;
+  bottom: 4rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.chat__message-input {
+  position: fixed;
+  bottom: 0;
+  background: #daffa1;
+  width: 100%;
+  padding: 1rem 1rem;
+  height: 4rem;
+}
