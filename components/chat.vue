@@ -11,7 +11,7 @@
   import messageInput from '~/components/messageInput.vue'
 
   export default {
-    components: {messageInput, messages},
+    components: {messageInput, messages,},
     data() {
       return {
         subscription: null,
@@ -30,15 +30,58 @@
       },
       onSendMessage(event) {
         const date = new Date();
+        const type = this.getTypeMessage(event);
+        console.log(type);
         this.$bus.send('/common', {
           id: date.getTime(),
-          type: 'chat_message',
+          type: type,
           body: {
             sender: 'user',
-            date: date.toGMTString(),
+            date: date.toUTCString(),
             text: event
           }
         })
+        const answer = [
+          'Привет, как у тебя дела?',
+          'https://www.google.ru/',
+          'https://www.ebay.com/',
+          'https://ru.aliexpress.com',
+          'https://trinixy.ru/pics3/20080124/podb/6/krasota_01.jpg',
+          'https://pp.userapi.com/c639419/v639419834/49f2b/_IhYYjUstAY.jpg?ava=1',
+          'Я проверка не бот ',
+          'lorem ipsum set emmet ',
+          'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          'https://www.youtube.com/watch?v=ZhIsAZO5gl0',
+          'https://www.youtube.com/watch?v=n4RjJKxsamQ',
+          'https://www.youtube.com/watch?v=hTWKbfoikeg',
+          'Text 2',
+          'Text 3',
+          'Text 4',
+        ]
+        const dateBot = new Date();
+        const messageBot = answer[Math.floor(Math.random()*answer.length)]
+        const typeBot = this.getTypeMessage(messageBot);
+        this.$bus.send('/common', {
+          id: dateBot.getTime(),
+          type: typeBot,
+          body: {
+            sender: 'bot',
+            date: dateBot.toUTCString(),
+            text: messageBot
+          }
+        })
+      },
+      getTypeMessage(message){
+        if ( /^[^\s]+(?:\.(com|ru|net|org))[^\s]*/.test(message)){
+          if ( /^[^\s]+(?:\.(com|ru|net|org))[^\s]*\.(png|jpg|jpeg)/.test(message)){
+            return 'image'
+          }
+          if ( /^https\:\/\/www\.youtube\.com\/watch\?v\=[a-zA-Z0-9_]+/.test(message)){
+            return 'video'
+          }
+          return 'link'
+        }
+        return 'text'
       }
     }
   }
