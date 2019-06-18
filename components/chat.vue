@@ -2,6 +2,7 @@
     <div class="chat">
       <messages :messages="messages"></messages>
       <messageInput @onSendMessage="onSendMessage"></messageInput>
+      
     </div>
 </template>
 

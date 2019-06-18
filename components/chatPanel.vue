@@ -1,6 +1,7 @@
 <template>
   <div class="chatPanel">
       <input v-model="textMessage" type="text">
+      <VueEmoji @input="onInput" :value="myText" />
       <button @click="sendMessage">Send</button>
       <!-- showMessage для теста -->
       <div class="showMessage">
@@ -12,7 +13,10 @@
 
 
 <script>
+  import VueEmoji from 'emoji-vue'
+
 export default {
+  components: {VueEmoji},
   name: 'chatPanel',
     data(){
     return {
