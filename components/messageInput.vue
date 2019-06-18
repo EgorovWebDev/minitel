@@ -4,10 +4,7 @@
         <b-col cols="9">
           <b-input v-model="text"></b-input>
         </b-col>
-        <b-col cols="2">
-          <VueEmoji @input="onInput" :value="myText" />
-        </b-col>
-        <b-col cols="1">
+        <b-col cols="3">
           <b-button @click="onSendCLick">send</b-button>
         </b-col>
       </b-row>

@@ -4,7 +4,6 @@
        <span>[{{message.body.date}}] from {{message.body.sender}}</span>
        <br>
        <span>{{message.body.text }}</span>
-       <hr>
      </div>
     </div>
 </template>
