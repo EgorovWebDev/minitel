@@ -31,6 +31,10 @@
       onSendMessage(event) {
         const date = new Date();
         const type = this.getTypeMessage(event);
+        if (type=='video'){
+          message = message.replace("watch?v=", "embed/")
+          console.log(message);
+        }
         this.$bus.send('/common', {
           id: date.getTime(),
           type: type,
@@ -61,8 +65,12 @@
           const dateBot = new Date();
           const messageBot = answer[Math.floor(Math.random()*answer.length)]
           const typeBot = this.getTypeMessage(messageBot);
+        if (typeBot=='video'){
+          messageBot = messageBot.replace("watch?v=", "embed/");
+          console.log(messageBot);
+        }
           this.$bus.send('/common', {
-            id: dateBot.getTime()+'Bot',
+            id: dateBot.getTime(),
             type: typeBot,
             body: {
               sender: 'bot',

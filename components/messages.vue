@@ -1,6 +1,6 @@
 <template>
     <div class="chat__messages">
-     <div class="chat__messages__message" v-for="message of chatMessages" v-bind:key="message.id">
+     <div class="chat__messages__message" v-for="message of chatMessages" v-bind:key="message.id" v-bind:class="{'bot':message.body.sender=='bot'}">
        <span>[{{message.body.date}}] from {{message.body.sender}}</span>
        <br>
        <img v-if="message.type=='image' " :src="message.body.text" alt="image">
