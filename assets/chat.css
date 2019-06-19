@@ -10,13 +10,14 @@ iframe{
   height: 315px;
 }
 
-.bot{
-  float: right;
-  clear: both;
-  right: 0;
+.chat__messages__message.bot{
+  align-self: flex-end;
+  background: red;
 }
 .chat__messages {
-  float: left;
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
   background: #ffffff;
   bottom: 4rem;
