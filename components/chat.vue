@@ -31,7 +31,6 @@
       onSendMessage(event) {
         const date = new Date();
         const type = this.getTypeMessage(event);
-        console.log(type);
         this.$bus.send('/common', {
           id: date.getTime(),
           type: type,
@@ -58,18 +57,20 @@
           'Text 3',
           'Text 4',
         ]
-        const dateBot = new Date();
-        const messageBot = answer[Math.floor(Math.random()*answer.length)]
-        const typeBot = this.getTypeMessage(messageBot);
-        this.$bus.send('/common', {
-          id: dateBot.getTime(),
-          type: typeBot,
-          body: {
-            sender: 'bot',
-            date: dateBot.toUTCString(),
-            text: messageBot
-          }
-        })
+        setTimeout(() => {
+          const dateBot = new Date();
+          const messageBot = answer[Math.floor(Math.random()*answer.length)]
+          const typeBot = this.getTypeMessage(messageBot);
+          this.$bus.send('/common', {
+            id: dateBot.getTime(),
+            type: typeBot,
+            body: {
+              sender: 'bot',
+              date: dateBot.toUTCString(),
+              text: messageBot
+            }
+          })
+          }, 300) 
       },
       getTypeMessage(message){
         if ( /^[^\s]+(?:\.(com|ru|net|org))[^\s]*/.test(message)){
@@ -78,7 +79,7 @@
           }
           if ( /^https\:\/\/www\.youtube\.com\/watch\?v\=[a-zA-Z0-9_]+/.test(message)){
             return 'video'
-          }
+          } 
           return 'link'
         }
         return 'text'

@@ -2,10 +2,10 @@
     <div class="chat__message-input">
       <b-row>     
         <b-col cols="9">
-          <b-input v-model="text"></b-input>
+          <b-input v-model="text" @keyup.enter="onSendCLick"></b-input>
         </b-col>
         <b-col cols="3">
-          <b-button @click="onSendCLick">send</b-button>
+          <b-button @click="onSendCLick" >send</b-button>
         </b-col>
       </b-row>
      
@@ -13,10 +13,9 @@
 </template>
 
 <script>
-  import VueEmoji from 'emoji-vue'
 
   export default {
-    components: {VueEmoji},
+    components: {},
     data() {
       return {
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam architecto, debitis dolore ',
@@ -30,7 +29,6 @@
       },
       onInput(e){
         console.log(e)
-        console.log(this.myText)
       }
     }
       

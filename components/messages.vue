@@ -5,7 +5,7 @@
        <br>
        <img v-if="message.type=='image' " :src="message.body.text" alt="image">
        <a v-if="message.type=='link'" :href="message.body.text">{{message.body.text}}</a>
-       <iframe v-if="message.type=='video' " width="560" height="315" :src="message.body.text" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       <iframe v-if="message.type=='video'"  :src="message.body.text" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
        <span v-if="message.type=='text'">{{message.body.text }}</span>
      </div>
     </div>
