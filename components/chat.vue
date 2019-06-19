@@ -62,7 +62,7 @@
           const messageBot = answer[Math.floor(Math.random()*answer.length)]
           const typeBot = this.getTypeMessage(messageBot);
           this.$bus.send('/common', {
-            id: dateBot.getTime(),
+            id: dateBot.getTime()+'Bot',
             type: typeBot,
             body: {
               sender: 'bot',
