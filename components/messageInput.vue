@@ -1,14 +1,13 @@
 <template>
     <div class="chat__message-input">
       <b-row>     
-        <b-col cols="9">
+        <b-col cols="10">
           <b-input v-model="text" @keyup.enter="onSendCLick"></b-input>
         </b-col>
-        <b-col cols="3">
+        <b-col cols="1">
           <b-button @click="onSendCLick" >send</b-button>
         </b-col>
       </b-row>
-     
     </div>
 </template>
 
@@ -24,13 +23,13 @@
     },
     methods : {
       onSendCLick(event) {
-        if (this.text) {
+        // if (this.text) {
          this.$emit('onSendMessage', this.text)
          this.text = ''
-        }
-        else {
-          alert("Пустое поле ввода")
-        }
+        // }
+        // else {
+        //   alert("Пустое поле ввода")
+        // }
 
       },
       onInput(e){

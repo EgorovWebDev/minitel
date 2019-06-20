@@ -11,7 +11,7 @@
   import messageInput from '~/components/messageInput.vue'
 
   export default {
-    components: {messageInput, messages,},
+    components: {messageInput, messages},
     data() {
       return {
         subscription: null,

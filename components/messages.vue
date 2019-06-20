@@ -5,7 +5,7 @@
          <div class="avatar"><img :src="message.body.sender.avatarSrc"></div>
          <div class="date">[{{message.body.date}}]</div> 
        </div>
-       <img v-if="message.body.type=='image' " :src="message.body.text" alt="image">
+       <img class="chatImage" v-if="message.body.type=='image'" :src="message.body.text" alt="image">
        <a v-if="message.body.type=='link'" :href="message.body.text">{{message.body.text}}</a>
        <iframe v-if="message.body.type=='video'"  :src="message.body.text" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
        <div v-if="message.body.type=='text'">{{message.body.text }}</div>

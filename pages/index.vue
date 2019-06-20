@@ -7,7 +7,6 @@
 <script>
 
 import chat from '~/components/chat.vue'
-import chatPanel from '~/components/chatPanel.vue'
 export default {
 
   data(){
@@ -16,7 +15,6 @@ export default {
     } 
   },
   components: {
-    chatPanel,
     chat,
   },
   methods: {
