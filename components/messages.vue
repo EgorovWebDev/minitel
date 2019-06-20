@@ -1,12 +1,14 @@
 <template>
     <div class="chat__messages">
-     <div class="chat__messages__message" v-for="message of chatMessages" v-bind:key="message.id" v-bind:class="{'bot':message.body.sender=='bot'}">
-       <span>[{{message.body.date}}] from <img :src="message.body.sender.avatarSrc"></span>
-       <br>
+     <div class="chat__messages__message" v-for="message of chatMessages" v-bind:key="message.id" v-bind:class="{'bot':message.body.sender.name=='bot'}">
+       <div class="info">
+         <div class="avatar"><img :src="message.body.sender.avatarSrc"></div>
+         <div class="date">[{{message.body.date}}]</div> 
+       </div>
        <img v-if="message.body.type=='image' " :src="message.body.text" alt="image">
        <a v-if="message.body.type=='link'" :href="message.body.text">{{message.body.text}}</a>
        <iframe v-if="message.body.type=='video'"  :src="message.body.text" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-       <span v-if="message.body.type=='text'">{{message.body.text }}</span>
+       <div v-if="message.body.type=='text'">{{message.body.text }}</div>
      </div>
     </div>
 </template>

@@ -34,27 +34,30 @@
           id: date.getTime(),
           type: 'chat_message',
           body: {
-            sender: 'user',
+            sender: {
+              name: 'user',
+              avatarSrc: 'images/userAvatar.png'
+            },
             date: date.toUTCString(),
             text: event
           }
         })
         const answer = [
-          // 'Привет, как у тебя дела?',
-          // 'https://www.google.ru/',
-          // 'https://www.ebay.com/',
-          // 'https://ru.aliexpress.com',
-          // 'https://trinixy.ru/pics3/20080124/podb/6/krasota_01.jpg',
-          // 'https://pp.userapi.com/c639419/v639419834/49f2b/_IhYYjUstAY.jpg?ava=1',
-          // 'Я проверка не бот ',
-          // 'lorem ipsum set emmet ',
+          'Привет, как у тебя дела?',
+          'https://www.google.ru/',
+          'https://www.ebay.com/',
+          'https://ru.aliexpress.com',
+          'https://trinixy.ru/pics3/20080124/podb/6/krasota_01.jpg',
+          'https://pp.userapi.com/c639419/v639419834/49f2b/_IhYYjUstAY.jpg?ava=1',
+          'Я проверка не бот ',
+          'lorem ipsum set emmet ',
           'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
           'https://www.youtube.com/watch?v=ZhIsAZO5gl0',
           'https://www.youtube.com/watch?v=n4RjJKxsamQ',
           'https://www.youtube.com/watch?v=hTWKbfoikeg',
-          // 'Text 2',
-          // 'Text 3',
-          // 'Text 4',
+          'Text 2',
+          'Text 3',
+          'Text 4',
         ]
         setTimeout(() => {
           const dateBot = new Date();
@@ -65,7 +68,7 @@
             body: {
               sender: {
                 name: 'bot',
-                avatarSrc: 'https://trinixy.ru/pics3/20080124/podb/6/krasota_01.jpg'
+                avatarSrc: 'images/botAvatar.png'
                 },
               date: dateBot.toUTCString(),
               text: messageBot
