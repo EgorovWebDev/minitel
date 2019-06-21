@@ -2,16 +2,16 @@
     <div class="chat">
       <messages :messages="messages"></messages>
       <messageInput @onSendMessage="onSendMessage"></messageInput>
-      
     </div>
 </template>
 
 <script>
   import messages from '~/components/messages.vue'
   import messageInput from '~/components/messageInput.vue'
+  import EmojiPicker from 'vue-emoji-picker'
 
   export default {
-    components: {messageInput, messages},
+    components: {messageInput, messages, },
     data() {
       return {
         subscription: null,
@@ -25,6 +25,9 @@
       this.$bus.unsubscribe(this.subscription)
     },
     methods: {
+      insert(emoji) {
+            this.input += emoji
+        },
       onReceiveMessage(message) {
         this.messages.push(message)
       },
@@ -38,7 +41,7 @@
               name: 'user',
               avatarSrc: 'images/userAvatar.png'
             },
-            date: date.toUTCString(),
+            date: date.getHours()+':'+ date.getMinutes()+' '+date.toLocaleDateString(),
             text: event
           }
         })
@@ -70,7 +73,7 @@
                 name: 'bot',
                 avatarSrc: 'images/botAvatar.png'
                 },
-              date: dateBot.toUTCString(),
+              date: dateBot.getHours()+':'+ dateBot.getMinutes()+' '+dateBot.toLocaleDateString(),
               text: messageBot
             }
           })

@@ -5,7 +5,7 @@
           <b-input v-model="text" @keyup.enter="onSendCLick"></b-input>
         </b-col>
         <b-col cols="1">
-          <b-button @click="onSendCLick" >send</b-button>
+          <b-button @click="onSendCLick">send</b-button>
         </b-col>
       </b-row>
     </div>
