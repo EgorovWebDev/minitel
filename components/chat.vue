@@ -8,12 +8,13 @@
 <script>
   import messages from '~/components/messages.vue'
   import messageInput from '~/components/messageInput.vue'
-  import EmojiPicker from 'vue-emoji-picker'
+
 
   export default {
-    components: {messageInput, messages, },
+    components: {messageInput, messages},
     data() {
       return {
+        
         subscription: null,
         messages: []
       }
@@ -25,9 +26,6 @@
       this.$bus.unsubscribe(this.subscription)
     },
     methods: {
-      insert(emoji) {
-            this.input += emoji
-        },
       onReceiveMessage(message) {
         this.messages.push(message)
       },

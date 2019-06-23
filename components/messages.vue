@@ -54,19 +54,15 @@
         return 'text'
       },
       scrollToEnd(){ 
-        // TO DO: fix this problem
         setTimeout(() => {
           let container = this.$el
-          debugger
-          let scrollHeight = container.scrollHeight
-          container.scrollTop = scrollHeight
-          }, 10)
+          container.scrollIntoView(false);
+          }, 200)
       }
     },
     watch:{
-      messages(){
+    messages(){
           this.scrollToEnd()
-        this.getMessageComponent
           if (this.messages.length>0){
             let lastMessage = this.messages[this.messages.length-1]
             lastMessage.body.type = this.getTypeMessage(lastMessage.body.text)
@@ -83,3 +79,7 @@
 <style scoped>
 
 </style>
+
+    function newFunction() {
+      console.log('хуй');
+    }
