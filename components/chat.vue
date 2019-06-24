@@ -12,6 +12,7 @@
 
   export default {
     components: {messageInput, messages},
+
     data() {
       return {
         
@@ -19,16 +20,20 @@
         messages: []
       }
     },
+
     mounted() {
      this.subscription = this.$bus.subscribe('/common', this.onReceiveMessage)
     },
+
     destroyed() {
       this.$bus.unsubscribe(this.subscription)
     },
+
     methods: {
       onReceiveMessage(message) {
         this.messages.push(message)
       },
+
       onSendMessage(event) {
         const date = new Date();
         this.$bus.send('/common', {
@@ -76,7 +81,7 @@
             }
           })
           }, 300) 
-      },
+      }
 
     }
   }

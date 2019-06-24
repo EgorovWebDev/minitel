@@ -5,7 +5,7 @@
          <div class="avatar"><img :src="message.body.sender.avatarSrc"></div>
          <div class="date">[{{message.body.date}}]</div> 
        </div>
-      <component v-bind:is="getMessageComponent(message.body.type)" :text="message.body.text"></component>   
+      <component v-bind:is="getMessageComponent(message)" :text="message.body.text"></component>   
      </div>
     </div>
 </template>
@@ -25,6 +25,7 @@
 
   export default {
     components: {linkMessage,imageMessage,textMessage,videoMessage},
+
     props: {
       messages: Array
     },
@@ -34,13 +35,17 @@
          return this.messages
       }
     },
+
     data(){
       return {}
     },
+    
     methods:{
-      getMessageComponent(type){
-        return components[type]
+
+      getMessageComponent(message){
+        return components[this.getTypeMessage(message.body.text)]
       },
+
       getTypeMessage(message){
         if ( /^[^\s]+(?:\.(com|ru|net|org))[^\s]*/.test(message)){
           if ( /^[^\s]+(?:\.(com|ru|net|org))[^\s]*\.(png|jpg|jpeg)/.test(message)){
@@ -53,33 +58,18 @@
         }
         return 'text'
       },
+
       scrollToEnd(){ 
         setTimeout(() => {
-          let container = this.$el
-          container.scrollIntoView(false);
-          }, 200)
+          this.$el.scrollIntoView(false)
+        }, 200)
       }
     },
+
     watch:{
     messages(){
           this.scrollToEnd()
-          if (this.messages.length>0){
-            let lastMessage = this.messages[this.messages.length-1]
-            lastMessage.body.type = this.getTypeMessage(lastMessage.body.text)
-            if (lastMessage.body.type=='video'){
-              lastMessage.body.text = lastMessage.body.text.replace("watch?v=", "embed/")
-            }
-            this.messages[this.messages.length-1] = lastMessage
-          }
       }
     }
   }
 </script>
-
-<style scoped>
-
-</style>
-
-    function newFunction() {
-      console.log('хуй');
-    }
